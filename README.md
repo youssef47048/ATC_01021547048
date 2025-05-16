@@ -287,9 +287,6 @@ To change the language, click on the language dropdown in the top navigation bar
 
 The application includes a dark mode feature that can be toggled by clicking the moon/sun icon in the navigation bar.
 
-## 📝 API Documentation
-
-The application includes a RESTful API for integration with other systems. API documentation is available at `/swagger` when running in development mode.
 
 ## 🤝 Contributing
 
