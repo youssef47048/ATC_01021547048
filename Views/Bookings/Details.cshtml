@@ -1,0 +1,114 @@
+@model Booking
+@{
+    ViewData["Title"] = "Booking Details";
+}
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="mb-3">Booking Details</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Bookings" asp-action="Index">My Bookings</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Booking #@Model.Id</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Event Information</h5>
+                </div>
+                <div class="card-body">
+                    <h4 class="mb-3">@Model.Event.Name</h4>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">Date & Time:</div>
+                        <div class="col-md-9">@DateTimeHelper.FormatDateTime(Model.Event.Date)</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">Venue:</div>
+                        <div class="col-md-9">@Model.Event.Venue</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-3 fw-bold">Category:</div>
+                        <div class="col-md-9">@Model.Event.Category?.Name</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <p>@Model.Event.Description</p>
+                        </div>
+                    </div>
+                    
+                    <a asp-controller="Events" asp-action="Details" asp-route-id="@Model.EventId" class="btn btn-outline-primary">
+                        <i class="fas fa-calendar-alt me-1"></i> View Event Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">Booking Information</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6 fw-bold">Booking ID:</div>
+                        <div class="col-md-6">#@Model.Id</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6 fw-bold">Booking Date:</div>
+                        <div class="col-md-6">@DateTimeHelper.FormatDate(Model.BookingDate)</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6 fw-bold">Tickets:</div>
+                        <div class="col-md-6">@Model.TicketCount</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6 fw-bold">Price per Ticket:</div>
+                        <div class="col-md-6">$@Model.Event.Price.ToString("F2")</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6 fw-bold">Total Amount:</div>
+                        <div class="col-md-6 fw-bold">$@Model.TotalAmount.ToString("F2")</div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6 fw-bold">Status:</div>
+                        <div class="col-md-6">
+                            @if (Model.IsCancelled)
+                            {
+                                <span class="badge bg-danger">Cancelled</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-success">Confirmed</span>
+                            }
+                        </div>
+                    </div>
+                    
+                    @if (!Model.IsCancelled)
+                    {
+                        <form asp-action="Cancel" asp-route-id="@Model.Id" method="post" onsubmit="return confirm('Are you sure you want to cancel this booking?');">
+                            <button type="submit" class="btn btn-danger w-100">
+                                <i class="fas fa-times-circle me-1"></i> Cancel Booking
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
