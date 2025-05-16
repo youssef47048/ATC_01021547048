@@ -1,0 +1,51 @@
+@model Booking
+@{
+    ViewData["Title"] = "Booking Confirmation";
+}
+
+<div class="container">
+    <div class="booking-confirmation">
+        <i class="fas fa-check-circle text-success"></i>
+        <h1 class="display-4 mb-4">Booking Confirmed!</h1>
+        <p class="lead">Thank you for booking with us. Your reservation has been confirmed.</p>
+        
+        <div class="card mb-4 mt-4">
+            <div class="card-header bg-primary text-white">
+                <h3>Booking Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 text-md-end">
+                        <p><strong>Booking ID:</strong></p>
+                        <p><strong>Event:</strong></p>
+                        <p><strong>Date & Time:</strong></p>
+                        <p><strong>Venue:</strong></p>
+                        <p><strong>Tickets:</strong></p>
+                        <p><strong>Total Amount:</strong></p>
+                        <p><strong>Booking Date:</strong></p>
+                        <p><strong>Status:</strong></p>
+                    </div>
+                    <div class="col-md-6 text-md-start">
+                        <p>@Model.Id</p>
+                        <p>@Model.Event.Name</p>
+                        <p>@Model.Event.Date.ToString("dddd, MMMM dd, yyyy - h:mm tt")</p>
+                        <p>@Model.Event.Venue</p>
+                        <p>@Model.TicketCount</p>
+                        <p>$@Model.TotalAmount.ToString("F2")</p>
+                        <p>@Model.BookingDate.ToString("MMMM dd, yyyy - h:mm tt")</p>
+                        <p><span class="badge bg-success">@Model.Status</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <a asp-controller="Bookings" asp-action="Index" class="btn btn-primary me-2">
+                <i class="fas fa-list me-2"></i> View All Bookings
+            </a>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-primary">
+                <i class="fas fa-home me-2"></i> Back to Home
+            </a>
+        </div>
+    </div>
+</div> 

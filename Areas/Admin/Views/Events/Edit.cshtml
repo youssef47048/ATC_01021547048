@@ -1,0 +1,135 @@
+@model Event
+@{
+    ViewData["Title"] = "Edit Event";
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12 d-flex justify-content-between align-items-center">
+            <h1 class="h2 mb-0">Edit Event</h1>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left me-1"></i> Back to List
+            </a>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card admin-card">
+                <div class="card-body">
+                    <form asp-action="Edit" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Name" class="form-label">Event Name</label>
+                                    <input asp-for="Name" class="form-control" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="CategoryId" class="form-label">Category</label>
+                                    <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.Categories">
+                                        <option value="">-- Select Category --</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Date" class="form-label">Event Date & Time</label>
+                                    <input asp-for="Date" class="form-control" type="datetime-local" />
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Venue" class="form-label">Venue</label>
+                                    <input asp-for="Venue" class="form-control" />
+                                    <span asp-validation-for="Venue" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Price" class="form-label">Price ($)</label>
+                                    <input asp-for="Price" class="form-control" type="number" step="0.01" min="0" />
+                                    <span asp-validation-for="Price" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="IsActive" class="form-label">Status</label>
+                                    <div class="form-check form-switch mt-2">
+                                        <input asp-for="IsActive" class="form-check-input" type="checkbox" />
+                                        <label class="form-check-label" for="IsActive">Active</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label asp-for="Description" class="form-label">Description</label>
+                            <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label class="form-label">Tags</label>
+                            <div class="row">
+                                @foreach (var tag in ViewBag.Tags)
+                                {
+                                    <div class="col-md-3 mb-2">
+                                        <div class="form-check">
+                                            @{
+                                                var tagId = int.Parse(tag.Value);
+                                                var isChecked = ViewBag.TagIds.Contains(tagId);
+                                            }
+                                            <input class="form-check-input" type="checkbox" name="tagIds" 
+                                                   value="@tag.Value" id="tag-@tag.Value" 
+                                                   @(isChecked ? "checked" : "") />
+                                            <label class="form-check-label" for="tag-@tag.Value">
+                                                @tag.Text
+                                            </label>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        
+                        <div class="form-group mb-3">
+                            <label class="form-label">Current Image</label>
+                            @if (!string.IsNullOrEmpty(Model.ImagePath))
+                            {
+                                <div class="mb-2">
+                                    <img src="@Model.ImagePath" alt="@Model.Name" class="event-thumbnail" style="max-height: 150px; max-width: 100%; border-radius: 5px;" />
+                                </div>
+                            }
+                            <label asp-for="ImageFile" class="form-label mt-2">Change Image</label>
+                            <input asp-for="ImageFile" class="form-control" type="file" accept="image/*" />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-group text-end">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-1"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+} 

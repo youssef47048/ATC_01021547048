@@ -1,0 +1,80 @@
+@model IEnumerable<Booking>
+@{
+    ViewData["Title"] = "My Bookings";
+}
+
+<div class="container">
+    <h1 class="mb-4">My Bookings</h1>
+    
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info" role="alert">
+            <i class="fas fa-info-circle me-2"></i> You don't have any bookings yet.
+        </div>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-primary">
+            <i class="fas fa-calendar-alt me-2"></i> Browse Events
+        </a>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Event</th>
+                        <th>Date</th>
+                        <th>Tickets</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a asp-controller="Events" asp-action="Details" asp-route-id="@item.EventId">
+                                    @item.Event.Name
+                                </a>
+                            </td>
+                            <td>@item.Event.Date.ToString("MMM dd, yyyy - HH:mm")</td>
+                            <td>@item.TicketCount</td>
+                            <td>$@item.TotalAmount.ToString("F2")</td>
+                            <td>
+                                @if (item.Status == "Confirmed")
+                                {
+                                    <span class="badge bg-success">@item.Status</span>
+                                }
+                                else if (item.Status == "Cancelled")
+                                {
+                                    <span class="badge bg-danger">@item.Status</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">@item.Status</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary">
+                                        <i class="fas fa-info-circle"></i> Details
+                                    </a>
+                                    @if (item.Status == "Confirmed" && item.Event.Date > DateTime.Now)
+                                    {
+                                        <form asp-action="Cancel" asp-route-id="@item.Id" method="post" onsubmit="return confirm('Are you sure you want to cancel this booking?');" style="display: inline;">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="fas fa-times-circle"></i> Cancel
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div> 
