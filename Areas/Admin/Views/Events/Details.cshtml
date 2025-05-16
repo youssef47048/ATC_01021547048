@@ -192,7 +192,18 @@
                         </div>
                         <div class="col-6 mb-3">
                             <div class="p-3 border rounded bg-light">
-                                <h3 class="text-success">@(Model.Bookings?.Where(b => !b.IsCancelled)?.Sum(b => b.TicketCount) ?? 0)</h3>
+                                <h3 class="text-success">
+                                    @{
+                                        var ticketsSold = 0;
+                                        if (Model.Bookings != null)
+                                        {
+                                            ticketsSold = Model.Bookings
+                                                .Where(b => !b.IsCancelled)
+                                                .Sum(b => b.TicketCount);
+                                        }
+                                    }
+                                    @ticketsSold
+                                </h3>
                                 <p class="mb-0">Tickets Sold</p>
                             </div>
                         </div>
@@ -204,7 +215,18 @@
                         </div>
                         <div class="col-6">
                             <div class="p-3 border rounded bg-light">
-                                <h3 class="text-info">$@((Model.Bookings?.Where(b => !b.IsCancelled)?.Sum(b => b.TotalAmount) ?? 0).ToString("F2"))</h3>
+                                <h3 class="text-info">
+                                    @{
+                                        var revenue = 0.00m;
+                                        if (Model.Bookings != null)
+                                        {
+                                            revenue = Model.Bookings
+                                                .Where(b => !b.IsCancelled)
+                                                .Sum(b => b.TotalAmount);
+                                        }
+                                    }
+                                    $@revenue.ToString("F2")
+                                </h3>
                                 <p class="mb-0">Revenue</p>
                             </div>
                         </div>

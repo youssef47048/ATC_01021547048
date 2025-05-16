@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 
 namespace Event_Management_System.Areas.Admin.Controllers
 {
@@ -45,7 +46,15 @@ namespace Event_Management_System.Areas.Admin.Controllers
         // GET: Admin/Events/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            var @event = await _eventService.GetEventByIdAsync(id);
+            // Get the event with all related data including bookings
+            var @event = await _context.Events
+                .Include(e => e.Category)
+                .Include(e => e.EventTags)
+                .ThenInclude(et => et.Tag)
+                .Include(e => e.Bookings)
+                .ThenInclude(b => b.User)
+                .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
+                
             if (@event == null)
             {
                 return NotFound();
