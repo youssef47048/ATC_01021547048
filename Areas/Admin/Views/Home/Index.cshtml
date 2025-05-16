@@ -1,0 +1,90 @@
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h2 mb-2">Admin Dashboard</h1>
+            <p class="text-muted">Welcome to the Event Management System administration panel.</p>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card admin-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-calendar-alt fa-3x mb-3 text-primary"></i>
+                    <h5 class="card-title">Events</h5>
+                    <p class="card-text">Manage all events in the system</p>
+                    <a asp-area="Admin" asp-controller="Events" asp-action="Index" class="btn btn-primary">
+                        <i class="fas fa-arrow-right me-1"></i> Go to Events
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card admin-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-tag fa-3x mb-3 text-success"></i>
+                    <h5 class="card-title">Categories</h5>
+                    <p class="card-text">Manage event categories</p>
+                    <a asp-area="Admin" asp-controller="Categories" asp-action="Index" class="btn btn-success">
+                        <i class="fas fa-arrow-right me-1"></i> Go to Categories
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card admin-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-ticket-alt fa-3x mb-3 text-info"></i>
+                    <h5 class="card-title">Bookings</h5>
+                    <p class="card-text">View and manage all bookings</p>
+                    <a asp-area="Admin" asp-controller="Bookings" asp-action="Index" class="btn btn-info">
+                        <i class="fas fa-arrow-right me-1"></i> Go to Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="card admin-card">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-3 text-warning"></i>
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Manage system users</p>
+                    <a asp-area="Admin" asp-controller="Users" asp-action="Index" class="btn btn-warning">
+                        <i class="fas fa-arrow-right me-1"></i> Go to Users
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card admin-card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Recent Bookings</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">This section will display recent bookings in the system.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <div class="card admin-card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Upcoming Events</h5>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted">This section will display upcoming events in the system.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

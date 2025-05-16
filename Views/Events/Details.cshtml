@@ -1,0 +1,89 @@
+@model Event
+@{
+    ViewData["Title"] = "Event Details";
+}
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li class="breadcrumb-item"><a asp-controller="Events" asp-action="Category" asp-route-id="@Model.CategoryId">@Model.Category.Name</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="event-details">
+        <div class="row">
+            <div class="col-md-5">
+                <div class="event-image">
+                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                    {
+                        <img src="@Model.ImagePath" alt="@Model.Name" class="img-fluid">
+                    }
+                    else
+                    {
+                        <img src="/images/events/default-event.jpg" alt="Default Event Image" class="img-fluid">
+                    }
+                </div>
+            </div>
+            <div class="col-md-7">
+                <div class="event-info">
+                    <h1 class="mb-3">@Model.Name</h1>
+                    
+                    <div class="mb-4">
+                        <a asp-controller="Events" asp-action="Category" asp-route-id="@Model.CategoryId" class="category-badge">@Model.Category.Name</a>
+                        @foreach (var tag in Model.EventTags.Select(et => et.Tag))
+                        {
+                            <a asp-controller="Events" asp-action="Tag" asp-route-id="@tag.Id" class="tag-badge">@tag.Name</a>
+                        }
+                    </div>
+                    
+                    <div class="mb-3">
+                        <p><i class="fas fa-calendar-day me-2"></i> <strong>Date & Time:</strong> @Model.Date.ToString("dddd, MMMM dd, yyyy - h:mm tt")</p>
+                        <p><i class="fas fa-map-marker-alt me-2"></i> <strong>Venue:</strong> @Model.Venue</p>
+                        <p><i class="fas fa-ticket-alt me-2"></i> <strong>Price:</strong> $@Model.Price.ToString("F2")</p>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <h5>Description</h5>
+                        <p>@Model.Description</p>
+                    </div>
+                    
+                    <div class="event-actions">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (ViewBag.IsBooked)
+                            {
+                                <div class="alert alert-success" role="alert">
+                                    <i class="fas fa-check-circle me-2"></i> You have already booked this event!
+                                </div>
+                                <a asp-controller="Bookings" asp-action="Index" class="btn btn-outline-primary">
+                                    <i class="fas fa-list me-2"></i> View My Bookings
+                                </a>
+                            }
+                            else
+                            {
+                                <a asp-controller="Bookings" asp-action="BookEvent" asp-route-id="@Model.Id" class="btn btn-success">
+                                    <i class="fas fa-calendar-check me-2"></i> Book Now
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-info" role="alert">
+                                <i class="fas fa-info-circle me-2"></i> Please login to book this event.
+                            </div>
+                            <a asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Url.Action("Details", "Events", new { id = Model.Id })" class="btn btn-primary">
+                                <i class="fas fa-sign-in-alt me-2"></i> Login to Book
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

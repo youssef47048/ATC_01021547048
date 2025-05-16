@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<Event_Management_System.Models.ApplicationUser> SignInManager
+@inject UserManager<Event_Management_System.Models.ApplicationUser> UserManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle me-1"></i>
+            @{
+                try
+                {
+                    var user = await UserManager.GetUserAsync(User);
+                    @(user != null ? (user.FirstName + " " + user.LastName) : "User")
+                }
+                catch
+                {
+                    @("User")
+                }
+            }
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item" asp-area="" asp-controller="Bookings" asp-action="Index"><i class="fas fa-ticket-alt me-2"></i>My Bookings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+                <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm">
+                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i>Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <div>
+        <a class="btn btn-outline-light me-2" asp-area="" asp-controller="Account" asp-action="Login">
+            <i class="fas fa-sign-in-alt me-1"></i> Login
+        </a>
+        <a class="btn btn-light" asp-area="" asp-controller="Account" asp-action="Register">
+            <i class="fas fa-user-plus me-1"></i> Register
+        </a>
+    </div>
+} 
