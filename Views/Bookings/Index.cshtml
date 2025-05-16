@@ -38,7 +38,7 @@
                                     @item.Event.Name
                                 </a>
                             </td>
-                            <td>@item.Event.Date.ToString("MMM dd, yyyy - HH:mm")</td>
+                            <td>@DateTimeHelper.FormatDateTime(item.Event.Date)</td>
                             <td>@item.TicketCount</td>
                             <td>$@item.TotalAmount.ToString("F2")</td>
                             <td>

@@ -153,16 +153,38 @@ body {
 /* Booking Confirmation */
 .booking-confirmation {
     text-align: center;
-    padding: 3rem;
-    background-color: var(--light-color);
-    border-radius: 10px;
-    margin: 2rem 0;
+    padding: 2rem 0;
 }
 
-.booking-confirmation i {
-    font-size: 4rem;
-    color: var(--success-color);
-    margin-bottom: 1rem;
+.booking-confirmation i.fa-check-circle {
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Dark mode styles for booking pages */
+[data-bs-theme="dark"] .card {
+    background-color: #2b3035;
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .card-header {
+    border-bottom-color: #495057;
+}
+
+[data-bs-theme="dark"] .table {
+    color: #f8f9fa;
+}
+
+[data-bs-theme="dark"] .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+[data-bs-theme="dark"] .breadcrumb-item.active {
+    color: #adb5bd;
+}
+
+[data-bs-theme="dark"] .breadcrumb-item + .breadcrumb-item::before {
+    color: #6c757d;
 }
 
 /* Responsive Design */

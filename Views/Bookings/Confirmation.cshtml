@@ -28,11 +28,11 @@
                     <div class="col-md-6 text-md-start">
                         <p>@Model.Id</p>
                         <p>@Model.Event.Name</p>
-                        <p>@Model.Event.Date.ToString("dddd, MMMM dd, yyyy - h:mm tt")</p>
+                        <p>@DateTimeHelper.FormatDateTime(Model.Event.Date, "dddd, MMMM dd, yyyy - h:mm tt")</p>
                         <p>@Model.Event.Venue</p>
                         <p>@Model.TicketCount</p>
                         <p>$@Model.TotalAmount.ToString("F2")</p>
-                        <p>@Model.BookingDate.ToString("MMMM dd, yyyy - h:mm tt")</p>
+                        <p>@DateTimeHelper.FormatDateTime(Model.BookingDate)</p>
                         <p><span class="badge bg-success">@Model.Status</span></p>
                     </div>
                 </div>
