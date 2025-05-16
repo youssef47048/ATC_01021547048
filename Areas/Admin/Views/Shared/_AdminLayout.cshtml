@@ -36,7 +36,7 @@
 
     <div class="container-fluid">
         <div class="row">
-            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+            <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="sidebar-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
@@ -104,7 +104,17 @@
             const htmlElement = document.getElementById('htmlElement');
             const toggleBtn = document.getElementById('toggleThemeBtn');
             const icon = toggleBtn.querySelector('i');
-            const text = toggleBtn.textContent.trim().replace(/(^\s*|\s*$)/, '');
+            
+            // Check if theme preference is saved in localStorage
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                htmlElement.setAttribute('data-bs-theme', savedTheme);
+                if (savedTheme === 'dark') {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    toggleBtn.innerHTML = '<i class="fas fa-sun me-2"></i> Light Mode';
+                }
+            }
             
             toggleBtn.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -114,11 +124,13 @@
                     icon.classList.remove('fa-sun');
                     icon.classList.add('fa-moon');
                     toggleBtn.innerHTML = '<i class="fas fa-moon me-2"></i> Dark Mode';
+                    localStorage.setItem('theme', 'light');
                 } else {
                     htmlElement.setAttribute('data-bs-theme', 'dark');
                     icon.classList.remove('fa-moon');
                     icon.classList.add('fa-sun');
                     toggleBtn.innerHTML = '<i class="fas fa-sun me-2"></i> Light Mode';
+                    localStorage.setItem('theme', 'dark');
                 }
             });
         });
