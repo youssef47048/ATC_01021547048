@@ -38,6 +38,8 @@ namespace Event_Management_System.Services
                 .Include(e => e.Category)
                 .Include(e => e.EventTags)
                 .ThenInclude(et => et.Tag)
+                .Include(e => e.Bookings)
+                .ThenInclude(b => b.User)
                 .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
         }
 
