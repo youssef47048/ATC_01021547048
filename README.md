@@ -15,7 +15,7 @@
 
 - [Overview](#overview)
 - [Features](#features)
-- [Screenshots](#screenshots)
+- [Live Demo](#live-demo)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
   - [Prerequisites](#prerequisites)
@@ -70,9 +70,9 @@ Event Management System is a comprehensive web application built with ASP.NET Co
   - Mobile-friendly interface
   - Dark mode support
 
-## 📸 Screenshots
+## 🌐 Live Demo
 
-*[Add screenshots of your application here]*
+The application is deployed and accessible at: [https://eventu.runasp.net/](https://eventu.runasp.net/)
 
 ## 🛠️ Technology Stack
 
