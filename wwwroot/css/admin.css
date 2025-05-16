@@ -207,4 +207,26 @@ body {
     .sidebar-sticky {
         height: auto;
     }
+}
+
+/* Stats Cards */
+.stats-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    padding: 1rem;
+    transition: all 0.3s ease;
+}
+
+[data-bs-theme="dark"] .stats-card {
+    background-color: #343a40;
+    border-color: #495057;
+}
+
+[data-bs-theme="dark"] .bg-light {
+    background-color: #343a40 !important;
+}
+
+[data-bs-theme="dark"] .border {
+    border-color: #495057 !important;
 } 

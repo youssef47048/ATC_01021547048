@@ -185,13 +185,13 @@
                 <div class="card-body">
                     <div class="row text-center">
                         <div class="col-6 mb-3">
-                            <div class="p-3 border rounded bg-light">
+                            <div class="p-3 border rounded stats-card">
                                 <h3 class="text-primary">@(Model.Bookings?.Count() ?? 0)</h3>
                                 <p class="mb-0">Total Bookings</p>
                             </div>
                         </div>
                         <div class="col-6 mb-3">
-                            <div class="p-3 border rounded bg-light">
+                            <div class="p-3 border rounded stats-card">
                                 <h3 class="text-success">
                                     @{
                                         var ticketsSold = 0;
@@ -208,13 +208,13 @@
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="p-3 border rounded bg-light">
+                            <div class="p-3 border rounded stats-card">
                                 <h3 class="text-danger">@(Model.Bookings?.Count(b => b.IsCancelled) ?? 0)</h3>
                                 <p class="mb-0">Cancelled</p>
                             </div>
                         </div>
                         <div class="col-6">
-                            <div class="p-3 border rounded bg-light">
+                            <div class="p-3 border rounded stats-card">
                                 <h3 class="text-info">
                                     @{
                                         var revenue = 0.00m;
