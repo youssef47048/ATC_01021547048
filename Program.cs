@@ -23,6 +23,9 @@ namespace Event_Management_System
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             
+            // Debug connection string
+            Console.WriteLine($"Using connection string: {connectionString}");
+            
             // Add Identity
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options => {
                     options.SignIn.RequireConfirmedAccount = false;

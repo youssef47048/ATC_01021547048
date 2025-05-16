@@ -91,7 +91,7 @@ namespace Event_Management_System.Services
                 }
                 
                 // Debug database connection
-                Console.WriteLine($"Database connection state: {_context.Database.GetConnectionString() != null ? "Connected" : "Not connected"}");
+                Console.WriteLine("Database connection state: " + (_context.Database.GetConnectionString() != null ? "Connected" : "Not connected"));
                 
                 // Set default values for required fields if not provided
                 @event.CreatedAt = DateTime.Now;
