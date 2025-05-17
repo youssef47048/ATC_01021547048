@@ -53,7 +53,6 @@ Event Management System is a comprehensive web application built with ASP.NET Co
   - Book events with multiple tickets
   - View booking history
   - Cancel bookings
-  - Booking confirmation emails
 
 - **Admin Panel**
   - Dashboard with statistics
