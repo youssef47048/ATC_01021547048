@@ -88,9 +88,6 @@ The application is deployed and accessible at: [https://eventu.runasp.net/](http
   - Font Awesome 6
   - jQuery
 
-- **DevOps & Deployment**
-  - Docker containerization
-  - GitHub Actions for CI/CD
 
 ## 📦 Installation
 
