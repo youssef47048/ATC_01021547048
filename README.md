@@ -40,7 +40,6 @@ Event Management System is a comprehensive web application built with ASP.NET Co
 - **User Authentication & Authorization**
   - User registration and login
   - Role-based access control (Admin and User roles)
-  - External login providers support
 
 - **Event Management**
   - Create, edit, and delete events
