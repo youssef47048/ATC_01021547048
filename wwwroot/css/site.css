@@ -30,6 +30,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
+    margin-bottom: 60px;
 }
 
 /* Event Cards */
@@ -119,7 +120,11 @@ body {
 
 /* Footer */
 .footer {
-    margin-top: auto;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px;
 }
 
 /* Categories and Tags */
@@ -210,17 +215,35 @@ body {
 }
 
 /* Multilanguage Support - RTL */
-[dir="rtl"] .me-2 {
+html[dir="rtl"] .me-2 {
     margin-right: 0 !important;
     margin-left: 0.5rem !important;
 }
 
-[dir="rtl"] .ms-auto {
+html[dir="rtl"] .me-3 {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+
+html[dir="rtl"] .ms-auto {
     margin-left: 0 !important;
     margin-right: auto !important;
 }
 
-[dir="rtl"] .me-auto {
+html[dir="rtl"] .me-auto {
     margin-right: 0 !important;
     margin-left: auto !important;
+}
+
+/* Base styles */
+html {
+    font-size: 16px;
+    position: relative;
+    min-height: 100%;
+}
+
+/* Status badges */
+.status-badge {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
 } 

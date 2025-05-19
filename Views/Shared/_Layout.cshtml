@@ -1,10 +1,24 @@
+@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+@{
+    var currentCulture = CultureInfo.CurrentCulture;
+    var isRTL = currentCulture.TextInfo.IsRightToLeft;
+    var langCode = currentCulture.Name;
+}
+
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="light" id="htmlElement">
+<html lang="@langCode" data-bs-theme="light" id="htmlElement" dir="@(isRTL ? "rtl" : "ltr")">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Event Management System</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
+    @if (isRTL)
+    {
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" />
+    }
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
@@ -22,31 +36,31 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">@Localizer["Home"]</a>
                         </li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Bookings" asp-action="Index">My Bookings</a>
+                                <a class="nav-link" asp-area="" asp-controller="Bookings" asp-action="Index">@Localizer["MyBookings"]</a>
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin Panel</a>
+                                <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">@Localizer["AdminPanel"]</a>
                             </li>
                         }
                     </ul>
                     
                     <form class="d-flex mx-3" asp-controller="Events" asp-action="Search" method="post">
-                        <input class="form-control me-2" type="search" name="searchTerm" placeholder="Search events..." aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Search</button>
+                        <input class="form-control me-2" type="search" name="searchTerm" placeholder="@Localizer["SearchEvents"]" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">@Localizer["Search"]</button>
                     </form>
                     
                     <div class="d-flex">
                         <div class="dropdown me-3">
                             <button class="btn btn-outline-light dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-globe me-1"></i> Language
+                                <i class="fas fa-globe me-1"></i> @Localizer["Language"]
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                                 <li>
@@ -60,7 +74,7 @@
                                     <form asp-controller="Home" asp-action="SetLanguage" method="post">
                                         <input type="hidden" name="culture" value="ar-SA" />
                                         <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
-                                        <button type="submit" class="dropdown-item">Arabic</button>
+                                        <button type="submit" class="dropdown-item">العربية</button>
                                     </form>
                                 </li>
                             </ul>
@@ -88,7 +102,7 @@
 
     <footer class="border-top footer text-muted bg-dark text-white py-3">
         <div class="container">
-            &copy; @DateTime.Now.Year - Event Management System - <a class="text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Now.Year - Event Management System - <a class="text-white" asp-area="" asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
         </div>
     </footer>
 

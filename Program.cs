@@ -6,6 +6,7 @@ using Event_Management_System.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using Event_Management_System.Resources;
 
 namespace Event_Management_System
 {
@@ -46,12 +47,15 @@ namespace Event_Management_System
                 options.AccessDeniedPath = "/Account/AccessDenied";
             });
 
-            // Add MVC
+            // Add MVC with localization support
             builder.Services.AddControllersWithViews()
                 .AddViewLocalization();
 
             // Add Localization
             builder.Services.AddLocalization(options => options.ResourcesPath = "Resources");
+            
+            // Add SharedResource as injectable service
+            builder.Services.AddSingleton<SharedResource>();
             
             builder.Services.Configure<RequestLocalizationOptions>(options =>
             {

@@ -29,6 +29,11 @@ namespace Event_Management_System.Controllers
             return View(events);
         }
 
+        public IActionResult Privacy()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)
         {
