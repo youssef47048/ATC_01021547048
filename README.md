@@ -40,7 +40,6 @@ Event Management System is a comprehensive web application built with ASP.NET Co
 - **User Authentication & Authorization**
   - User registration and login
   - Role-based access control (Admin and User roles)
-  - External login providers support
 
 - **Event Management**
   - Create, edit, and delete events
@@ -53,7 +52,6 @@ Event Management System is a comprehensive web application built with ASP.NET Co
   - Book events with multiple tickets
   - View booking history
   - Cancel bookings
-  - Booking confirmation emails
 
 - **Admin Panel**
   - Dashboard with statistics
@@ -88,9 +86,6 @@ The application is deployed and accessible at: [https://eventu.runasp.net/](http
   - Font Awesome 6
   - jQuery
 
-- **DevOps & Deployment**
-  - Docker containerization
-  - GitHub Actions for CI/CD
 
 ## 📦 Installation
 
