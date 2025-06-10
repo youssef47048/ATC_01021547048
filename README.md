@@ -38,7 +38,7 @@ Event Management System is a comprehensive web application built with ASP.NET Co
 
 ## 🎥 Demo Video
 
-[https://user-images.githubusercontent.com/YOUR_USER_ID/YOUR_REPOSITORY/assets/demo.mp4]([https://github.com/user-attachments/assets/27e39ae8-1b92-4534-ad21-c311a613caef](https://github.com/user-attachments/assets/a0f28cce-f50c-44da-b619-a7e589ea298a))
+[https://user-images.githubusercontent.com/YOUR_USER_ID/YOUR_REPOSITORY/assets/demo.mp4]((https://github.com/user-attachments/assets/a0f28cce-f50c-44da-b619-a7e589ea298a))
 
 ## ✨ Features
 
