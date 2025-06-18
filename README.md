@@ -11,25 +11,6 @@
 
 </div>
 
-## 📋 Table of Contents
-
-- [Overview](#overview)
-- [Features](#features)
-- [Live Demo](#live-demo)
-- [Technology Stack](#technology-stack)
-- [Installation](#installation)
-  - [Prerequisites](#prerequisites)
-  - [Local Setup](#local-setup)
-  - [Docker Setup](#docker-setup)
-- [Configuration](#configuration)
-  - [Connection Strings](#connection-strings)
-  - [Admin Credentials](#admin-credentials)
-- [Usage](#usage)
-- [Localization](#localization)
-- [Dark Mode](#dark-mode)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## 🔍 Overview
 
